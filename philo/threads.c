@@ -77,19 +77,19 @@ int	init_thread(t_data *data)
 	if (data->meals_nb > 0)
 	{
 		if (pthread_create(&t0, NULL, &monitor, &data->philos[0]))
-			return (ft_exit(data), 1);
+			return (ft_exit(data));
 	}
 	while (++i < data->philo_num)
 	{
 		if (pthread_create(&data->tid[i], NULL, &routine, &data->philos[i]))
-			return (ft_exit(data), 1);
+			return (ft_exit(data));
 		ft_usleep(1);
 	}
 	i = -1;
 	while (++i < data->philo_num)
 	{
 		if (pthread_join(data->tid[i], NULL))
-			return (ft_exit(data), 1);
+			return (ft_exit(data));
 	}
 	return (0);
 }

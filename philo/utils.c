@@ -51,3 +51,11 @@ int	ft_strcmp(char *s1, char *s2)
 	}
 	return (*(char *)s1 - *(char *)s2);
 }
+
+t_ull	ft_gettime(void)
+{
+	struct timeval	tv;
+
+	gettimeofday(&tv, NULL);
+	return ((tv.tv_sec * (t_ull)1000) + (tv.tv_usec / 1000));
+}

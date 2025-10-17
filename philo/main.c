@@ -16,7 +16,7 @@ int	case_one(t_data *data)
 {
 	data->start_time = ft_gettime();
 	if (pthread_create(&data->tid[0], NULL, &routine, &data->philos[0]))
-		return (ft_exit(data), 1);
+		return (ft_exit(data));
 	pthread_detach(data->tid[0]);
 	while (data->dead == 0)
 		ft_usleep(0);

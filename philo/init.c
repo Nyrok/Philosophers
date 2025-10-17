@@ -16,13 +16,13 @@ int	alloc(t_data *data)
 {
 	data->tid = malloc(sizeof(pthread_t) * data->philo_num);
 	if (!data->tid)
-		return (ft_exit(data), 1);
+		return (ft_exit(data));
 	data->forks = malloc(sizeof(pthread_mutex_t) * data->philo_num);
 	if (!data->forks)
-		return (ft_exit(data), 1);
+		return (ft_exit(data));
 	data->philos = malloc(sizeof(t_philo) * data->philo_num);
 	if (!data->philos)
-		return (ft_exit(data), 1);
+		return (ft_exit(data));
 	return (0);
 }
 
