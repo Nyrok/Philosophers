@@ -18,9 +18,6 @@
 # include <pthread.h>
 # include <sys/time.h>
 
-//	pthread_err
-# define TH_ERR "ERROR WHILE CREATING THREADS"
-//	philo_msg
 # define TAKE_FORKS "has taken a fork"
 # define THINKING "is thinking"
 # define SLEEPING "is sleeping"
