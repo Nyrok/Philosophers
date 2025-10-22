@@ -29,9 +29,9 @@ typedef unsigned long long	t_ull;
 typedef struct s_philo
 {
 	struct s_data	*data;
-	pthread_t		t1;
+	pthread_t		thread;
 	int				id;
-	int				eat_cont;
+	int				eat_count;
 	int				status;
 	int				eating;
 	uint64_t		time_to_die;
@@ -42,7 +42,7 @@ typedef struct s_philo
 
 typedef struct s_data
 {
-	pthread_t		*tid;
+	pthread_t		*threads;
 	int				philo_num;
 	int				meals_nb;
 	int				dead;

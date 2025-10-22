@@ -12,10 +12,10 @@
 
 #include "philo.h"
 
-int	alloc(t_data *data)
+int	alloc_data(t_data *data)
 {
-	data->tid = malloc(sizeof(pthread_t) * data->philo_num);
-	if (!data->tid)
+	data->threads = malloc(sizeof(pthread_t) * data->philo_num);
+	if (!data->threads)
 		return (ft_exit(data));
 	data->forks = malloc(sizeof(pthread_mutex_t) * data->philo_num);
 	if (!data->forks)
@@ -56,7 +56,7 @@ void	init_philos(t_data *data)
 		data->philos[i].data = data;
 		data->philos[i].id = i + 1;
 		data->philos[i].time_to_die = data->death_time;
-		data->philos[i].eat_cont = 0;
+		data->philos[i].eat_count = 0;
 		data->philos[i].eating = 0;
 		data->philos[i].status = 0;
 		pthread_mutex_init(&data->philos[i].lock, NULL);
@@ -86,9 +86,9 @@ int	init_data(t_data *data, char **argv, int argc)
 
 int	init(t_data *data, char **argv, int argc)
 {
-	if (init_data(data, argv, argc))
+	if (alloc_data(data))
 		return (1);
-	if (alloc(data))
+	if (init_data(data, argv, argc))
 		return (1);
 	if (init_forks(data))
 		return (1);

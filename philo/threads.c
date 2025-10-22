@@ -37,11 +37,11 @@ void	*supervisor(void *philo_ptr)
 		pthread_mutex_lock(&philo->lock);
 		if (ft_gettime() >= philo->time_to_die && philo->eating == 0)
 			print_message(DIED, philo);
-		if (philo->eat_cont == philo->data->meals_nb)
+		if (philo->eat_count == philo->data->meals_nb)
 		{
 			pthread_mutex_lock(&philo->data->lock);
 			philo->data->finished++;
-			philo->eat_cont++;
+			philo->eat_count++;
 			pthread_mutex_unlock(&philo->data->lock);
 		}
 		pthread_mutex_unlock(&philo->lock);
@@ -55,14 +55,14 @@ void	*routine(void *philo_ptr)
 
 	philo = (t_philo *) philo_ptr;
 	philo->time_to_die = philo->data->death_time + ft_gettime();
-	if (pthread_create(&philo->t1, NULL, &supervisor, (void *)philo))
+	if (pthread_create(&philo->thread, NULL, &supervisor, (void *)philo))
 		return ((void *)1);
 	while (philo->data->dead == 0)
 	{
 		eat(philo);
 		print_message(THINKING, philo);
 	}
-	if (pthread_join(philo->t1, NULL))
+	if (pthread_join(philo->thread, NULL))
 		return ((void *)1);
 	return ((void *)0);
 }
@@ -81,14 +81,14 @@ int	init_thread(t_data *data)
 	}
 	while (++i < data->philo_num)
 	{
-		if (pthread_create(&data->tid[i], NULL, &routine, &data->philos[i]))
+		if (pthread_create(&data->threads[i], NULL, &routine, &data->philos[i]))
 			return (ft_exit(data));
 		ft_usleep(1);
 	}
 	i = -1;
 	while (++i < data->philo_num)
 	{
-		if (pthread_join(data->tid[i], NULL))
+		if (pthread_join(data->threads[i], NULL))
 			return (ft_exit(data));
 	}
 	return (0);

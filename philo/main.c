@@ -15,9 +15,9 @@
 int	case_one(t_data *data)
 {
 	data->start_time = ft_gettime();
-	if (pthread_create(&data->tid[0], NULL, &routine, &data->philos[0]))
+	if (pthread_create(&data->threads[0], NULL, &routine, &data->philos[0]))
 		return (ft_exit(data));
-	pthread_detach(data->tid[0]);
+	pthread_detach(data->threads[0]);
 	while (data->dead == 0)
 		ft_usleep(0);
 	ft_exit(data);
@@ -26,8 +26,8 @@ int	case_one(t_data *data)
 
 void	clear_data(t_data	*data)
 {
-	if (data->tid)
-		free(data->tid);
+	if (data->threads)
+		free(data->threads);
 	if (data->forks)
 		free(data->forks);
 	if (data->philos)
