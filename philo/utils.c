@@ -32,7 +32,7 @@ int	input_checker(char **argv)
 	return (0);
 }
 
-int	ft_usleep(useconds_t time)
+int	ft_usleep(t_ull time)
 {
 	t_ull	start;
 

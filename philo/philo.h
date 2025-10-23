@@ -33,7 +33,7 @@ typedef struct s_philo
 	int				id;
 	int				eat_count;
 	int				eating;
-	uint64_t		time_to_die;
+	t_ull			time_to_die;
 	pthread_mutex_t	lock;
 	pthread_mutex_t	*r_fork;
 	pthread_mutex_t	*l_fork;
@@ -61,7 +61,7 @@ int			ft_strcmp(char *s1, char *s2);
 void		print_message(char *str, t_philo *philo);
 int			ft_exit(t_data *data);
 t_ull		ft_gettime(void);
-int			ft_usleep(useconds_t time);
+int			ft_usleep(t_ull time);
 int			init(t_data *data, char **argv, int argc);
 int			init_thread(t_data *data);
 int			input_checker(char **argv);
