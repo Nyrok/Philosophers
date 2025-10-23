@@ -58,7 +58,6 @@ void	init_philos(t_data *data)
 		data->philos[i].time_to_die = data->death_time;
 		data->philos[i].eat_count = 0;
 		data->philos[i].eating = 0;
-		data->philos[i].status = 0;
 		pthread_mutex_init(&data->philos[i].lock, NULL);
 		i++;
 	}

@@ -32,6 +32,9 @@ void	clear_data(t_data	*data)
 		free(data->forks);
 	if (data->philos)
 		free(data->philos);
+    data->threads = NULL;
+    data->forks = NULL;
+    data->philos = NULL;
 }
 
 int	ft_exit(t_data *data)

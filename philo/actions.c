@@ -51,7 +51,7 @@ void	eat(t_philo *philo)
 	philo->eating = 1;
 	philo->time_to_die = ft_gettime() + philo->data->death_time;
 	print_message(EATING, philo);
-	philo->eat_cont++;
+	philo->eat_count++;
 	ft_usleep(philo->data->eat_time);
 	philo->eating = 0;
 	pthread_mutex_unlock(&philo->lock);

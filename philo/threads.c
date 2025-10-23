@@ -24,7 +24,7 @@ void	*monitor(void *data_ptr)
 			philo->data->dead = 1;
 		pthread_mutex_unlock(&philo->lock);
 	}
-	return ((void *)0);
+	return (NULL);
 }
 
 void	*supervisor(void *philo_ptr)
@@ -32,12 +32,12 @@ void	*supervisor(void *philo_ptr)
 	t_philo	*philo;
 
 	philo = (t_philo *) philo_ptr;
-	while (philo->data->dead == 0)
+	while (philo->data && philo->data->dead == 0)
 	{
 		pthread_mutex_lock(&philo->lock);
 		if (ft_gettime() >= philo->time_to_die && philo->eating == 0)
 			print_message(DIED, philo);
-		if (philo->eat_count == philo->data->meals_nb)
+		if (philo->data && philo->eat_count == philo->data->meals_nb)
 		{
 			pthread_mutex_lock(&philo->data->lock);
 			philo->data->finished++;
@@ -70,13 +70,13 @@ void	*routine(void *philo_ptr)
 int	init_thread(t_data *data)
 {
 	int			i;
-	pthread_t	t0;
+	pthread_t	thread;
 
 	i = -1;
 	data->start_time = ft_gettime();
 	if (data->meals_nb > 0)
 	{
-		if (pthread_create(&t0, NULL, &monitor, &data->philos[0]))
+		if (pthread_create(&thread, NULL, &monitor, &data->philos[0]))
 			return (ft_exit(data));
 	}
 	while (++i < data->philo_num)
