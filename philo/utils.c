@@ -20,32 +20,6 @@ long long	ft_gettimestamp(void)
 	return ((t.tv_sec * 1000LL) + (t.tv_usec / 1000LL));
 }
 
-void	ft_putnbr_fd(int nb, int fd)
-{
-	unsigned int	n;
-	unsigned char	c;
-
-	if (fd == -1)
-		return ;
-	if (nb < 0)
-	{
-		write(fd, "-", 1);
-		n = -nb;
-	}
-	else
-		n = nb;
-	if (n > 9)
-	{
-		ft_putnbr_fd(n / 10, fd);
-		ft_putnbr_fd(n % 10, fd);
-	}
-	else
-	{
-		c = n + '0';
-		write(fd, &c, 1);
-	}
-}
-
 void	print_message(char *suffix, t_philo *philo)
 {
 	long long	elapsed_time;
