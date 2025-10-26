@@ -15,13 +15,15 @@
 static int	check_args(int argc, char *argv[])
 {
 	if (argc < 5 || argc > 6)
-		return (1);
-	if (ft_atoi(argv[1]) <= 0 || ft_atoi(argv[2]) <= 0 \
-		|| ft_atoi(argv[3]) <= 0 || ft_atoi(argv[4]) <= 0 \
-		|| (argc == 6 && ft_atoi(argv[5]) <= 0))
-	{
-		printf("%s\n", ERROR_BAD_INPUT);
 		return (0);
+	while (argc > 1)
+	{
+		if (ft_atoi(argv[argc - 1]) <= 0)
+		{
+			printf("%s\n", ERROR_BAD_INPUT);
+			return (0);
+		}
+		argc--;
 	}
 	return (1);
 }
