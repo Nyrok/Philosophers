@@ -36,8 +36,8 @@ void	*routine(void *ptr)
 	while (!has_died(philo))
 	{
 		set_eating(philo);
-		set_thinking(philo);
 		set_sleeping(philo);
+		set_thinking(philo);
 	}
 	return (NULL);
 }
